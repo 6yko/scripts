@@ -182,7 +182,7 @@ process_video() {
     mv "${output_dir}" "${FINAL_DIR}/${title_name}"
 
     # Clean up the temporary directory after processing each video
-    cleanup "$temp_dir"
+#    cleanup "$temp_dir"
 
     msg "Finished processing video: ${source_url}"
 }
@@ -196,6 +196,6 @@ done
 merged_zip="${SCRIPT_DIR}/transcriptions.zip"
 (cd "${FINAL_DIR}" && zip -r "${merged_zip}" .)
 
-cleanup "$FINAL_DIR"
+#cleanup "$FINAL_DIR"
 
-msg "All videos processed. The merged transcriptions can be found in ${merged_zip}"
+#msg "All videos processed. The merged transcriptions can be found in ${merged_zip}"
