@@ -142,6 +142,10 @@ process_video() {
 
     local title_name="$(xargs basename -s .vod.m4a <"${temp_filename}")"
 
+    msg "Whisper !!!!!!!!!!!!!!!!!!!!!!"
+    whisper "${temp_dir}/${title_name}.vod.m4a"
+    msg "Whisper FINISH!!!!!!"
+
     msg "Extracting audio and resampling..."
     ffmpeg -i "${temp_dir}/${title_name}.vod.m4a" \
         -hide_banner \
