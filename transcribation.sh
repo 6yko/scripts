@@ -91,15 +91,20 @@ check_requirements() {
         exit 1
     fi;
 
-    if ! command -v yt-dlp &>/dev/null; then
-        echo "yt-dlp is required: https://github.com/yt-dlp/yt-dlp";
-        exit 1;
+    if ! command -v whisper &>/dev/null; then
+        echo "whisper is required!";
+        exit 1
     fi;
 
-    if ! command -v whisper-ctranslate2 &>/dev/null; then
-        echo "whisper-ctranslate2 is required: https://github.com/Softcatala/whisper-ctranslate2";
-        exit 1;
-    fi;
+#    if ! command -v yt-dlp &>/dev/null; then
+#        echo "yt-dlp is required: https://github.com/yt-dlp/yt-dlp";
+#        exit 1;
+#    fi;
+
+#    if ! command -v whisper-ctranslate2 &>/dev/null; then
+#        echo "whisper-ctranslate2 is required: https://github.com/Softcatala/whisper-ctranslate2";
+#        exit 1;
+#    fi;
 
 }
 
