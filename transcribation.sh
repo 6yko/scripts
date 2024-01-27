@@ -154,6 +154,23 @@ process_video() {
         -segment_time "${AUDIO_CHUNK_LENGTH}" \
         "${temp_dir}/${title_name}.vod-resampled.%03d.wav"
 
+    local output_dir="${temp_dir}/transcriptions"
+    mkdir -p "$output_dir"
+    local merged_txt="${output_dir}/merged.${title_name}.txt"
+
+    for wav_file in "${temp_dir}/${title_name}.vod-resampled."*.wav; do
+        msg "Transcribing to subtitle file for: ${wav_file}..."
+        local output_file="${output_dir}/$(basename "${wav_file}" .wav).txt"
+        whisper-ctranslate2 "$wav_file" --output_dir "${output_dir}" \
+            --model "${WHISPER_MODEL}" \
+            --language "${WHISPER_LANG}"\
+            --device "${WHISPER_DEVICE}" -f txt
+        cat "$output_file" >> "$merged_txt"
+    done
+
+    mkdir -p "${FINAL_DIR}/${title_name}"
+    mv "${output_dir}" "${FINAL_DIR}/${title_name}"
+
     # Clean up the temporary directory after processing each video
     cleanup "$temp_dir"
 
