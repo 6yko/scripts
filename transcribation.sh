@@ -48,7 +48,8 @@ SCRIPT_DIR="${SCRIPT_PATH%/*}"
 AUDIO_CHUNK_LENGTH="${AUDIO_CHUNK_LENGTH:-3600}";
 
 # Set the desired language for transcription, default is English (en)
-WHISPER_LANG="${WHISPER_LANG:-en}";
+WHISPER_LANG="${WHISPER_LANG:-ru}";
+#WHISPER_LANG="${WHISPER_LANG:-en}";
 
 # Set the desired model for transcription, default is "base.en"
 WHISPER_MODEL="${WHISPER_MODEL:-base.en}";
@@ -163,8 +164,8 @@ process_video() {
         local output_file="${output_dir}/$(basename "${wav_file}" .wav).txt"
         whisper-ctranslate2 "$wav_file" --output_dir "${output_dir}" \
             --model "${WHISPER_MODEL}" \
+            --language "${WHISPER_LANG}"\
             --device "${WHISPER_DEVICE}" -f txt
-#            --language "${WHISPER_LANG}"\
         cat "$output_file" >> "$merged_txt"
     done
 
