@@ -182,7 +182,7 @@ process_video() {
     mv "${output_dir}" "${FINAL_DIR}/${title_name}"
 
     # Clean up the temporary directory after processing each video
-#    cleanup "$temp_dir"
+    cleanup "$temp_dir"
 
     msg "Finished processing video: ${source_url}"
 }
